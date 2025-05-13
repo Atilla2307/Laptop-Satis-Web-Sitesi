@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Yorumlar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-dark text-white py-4">
+    <style>
+        .navbar-nav::-webkit-scrollbar {
+            height: 4px; 
+        }
+    
+        .navbar-nav::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff8c00, #ff2e63);
+            border-radius: 10px;
+        }
+    
+        .navbar-nav::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    
+        .navbar-nav::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6a00, #e62e62);
+        }
+    </style>
+    
+    <nav style="padding: 0; height: 58px;" class="navbar bg-dark">
+        <div  class="container-fluid">
+            <div  class="d-flex w-100 overflow-auto ms-7 justify-content-end">
+                <ul class="navbar-nav flex-row flex-nowrap overflow-auto"  
+                    style="white-space: nowrap; font-size: 12px;">
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="yorum.html">Yorumlar</a>
+                </li>
+                    <li class="nav-item">
+                        <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="magazalar.html">Mağazalar Ve İletişim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="teknik_servis.html">Teknik Servis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="randevu.html">Randevu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="ömur_boyu_bakım.html">Ömür Boyu Bakım</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
+        <nav style="bottom: 10px;" class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand ms-3" href="index.htm">
+                    <img src="img/logo2.png" alt="image" width="200" height="39">
+                </a>
+                
+                <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1">
+                    <i class="bi bi-list" style="color: white; font-size: 1.5rem;"></i> 
+                </button>
+                
+                <div style="padding: 0px;" class="collapse navbar-collapse bg-dark p-1" id="navbarSupportedContent1">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                    
+                    <form class="d-flex col-md-7 mx-auto" role="search">
+                        <input class="form-control me-2 p-2 w-90" type="search" placeholder="Arama Yap" style="color: black; background-color: white; border: 3px solid rgb(26, 219, 0);">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+        
+                    <div style="padding-top: 20px;" class="d-flex align-items-center mt-2 me-5 mt-lg-0">
+
+
+                        <button onclick="toggleGirisPanel()" class="btn btn-outline-warning position-relative" id="girisButon" style="position: fixed; right: 20px;">Giriş Yap</button>
+          
+                      <div id="girisPanel" style="position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background-color: #2c2c2c; box-shadow: -5px 0 20px rgba(0,255,85,0.5); z-index: 1050; transition: right 0.5s; padding: 40px; color: white; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                          <h3 id="panelBaslik">🧑 Kullanıcı Girişi</h3>
+          
+                          <input type="text" id="kullaniciAdi" placeholder="TC / E-Posta" class="giris-input"><br>
+                          <input type="password" id="sifre" placeholder="Şifre" class="giris-input">
+                          <input type="text" id="eposta" placeholder="E-Posta" class="giris-input kayit-alani" style="display: none;">
+                          <input type="text" id="telefon" placeholder="Telefon" class="giris-input kayit-alani" style="display: none;"><br>
+          
+                          <button onclick="girisYap()" id="girisBtn" class="btn giris-btn bg-success">Giriş Yap</button>
+                          <button onclick="toggleKayitModu()" id="kayitBtn" class="btn giris-btn bg-primary">Kayıt Ol</button>
+                          <button onclick="toggleGirisPanel()" class="btn giris-btn w-25 bg-warning">Geri</button>
+                      </div>
+          
+                  <style>
+                      .giris-input {
+                          width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none;
+                      }
+                      .giris-btn {
+                          width: 100%; margin-top: 15px; padding: 12px; background-color: #00ff55;
+                          border: none; font-weight: bold; border-radius: 5px; font-size: 16px; color: black;
+                      }
+                  </style>
+          
+                  <script>
+                      let kayitModu = false;
+          
+                      function toggleGirisPanel() {
+                          const panel = document.getElementById("girisPanel");
+                          panel.style.right = panel.style.right === "0px" ? "-400px" : "0px";
+                      }
+          
+                      function toggleKayitModu() {
+                          kayitModu = !kayitModu;
+                          const kayitAlanlari = document.querySelectorAll(".kayit-alani");
+                          const panelBaslik = document.getElementById("panelBaslik");
+                          const girisBtn = document.getElementById("girisBtn");
+                          const kayitBtn = document.getElementById("kayitBtn");
+          
+                          if (kayitModu) {
+                              kayitAlanlari.forEach(el => el.style.display = "block");
+                              panelBaslik.textContent = "📝 Kayıt Ol";
+                              girisBtn.textContent = "Kayıt Ol";
+                              kayitBtn.textContent = "Giriş Yap";
+                          } else {
+                              kayitAlanlari.forEach(el => el.style.display = "none");
+                              panelBaslik.textContent = "🧑 Kullanıcı Girişi";
+                              girisBtn.textContent = "Giriş Yap";
+                              kayitBtn.textContent = "Kayıt Ol";
+                          }
+                      }
+          
+                      function girisYap() {
+                          const kullanici = document.getElementById("kullaniciAdi").value;
+                          const sifre = document.getElementById("sifre").value;
+                          const eposta = document.getElementById("eposta").value;
+                          const telefon = document.getElementById("telefon").value;
+          
+                          if (kayitModu) {
+                              if (kullanici && sifre && eposta && telefon) {
+                                  alert("Kayıt başarılı!");
+                                  toggleGirisPanel();
+                                  location.reload();
+                              } else {
+                                  alert("Tüm alanları doldurmalısın!");
+                              }
+                          } else {
+                              if (kullanici && sifre) {
+                                  alert("Giriş başarılı!");
+                                  toggleGirisPanel();
+                                  document.getElementById("girisButon").innerHTML = `${kullanici} 👤 (Çıkış Yap)`;
+                                  document.getElementById("girisButon").onclick = cikisYap;
+                              } else {
+                                  alert("Kullanıcı adı ve şifre gir!");
+                              }
+                          }
+                      }
+          
+                      function cikisYap() {
+                          alert("Çıkış yapıldı.");
+                          document.getElementById("girisButon").innerHTML = "Giriş Yap";
+                          document.getElementById("girisButon").onclick = toggleGirisPanel;
+                          toggleGirisPanel(); // 
+                      }
+                  </script>
+          
+                        
+          
+                        <button type="button" class="btn btn-primary position-relative" data-bs-toggle="offcanvas" data-bs-target="#sepetPaneli">
+                          <i class="bi bi-cart"></i> Sepet
+                          <span id="sepetAdet" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> 0</span>
+                      </button>
+                          
+                            
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <div style="background-image: linear-gradient(to right bottom, #ee1f00, #f34e00, #f86d00, #fc880f, #ffa025); height: 3px; width: 100v; background-color: red; position: relative; bottom:  10px;"> </div>
+        
+        <nav style="bottom: 10px;" class="navbar navbar-expand-lg bg-dark">
+            <div style="padding: 0px; margin: 0px;  margin-top: 0;" class="container-fluid justify-content-end">     
+              <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2">
+                   <i class="bi bi-list" style="color: white; font-size: 1.5rem;"></i> 
+              </button>
+             
+          
+             <div style="margin-top: 8px;" class="collapse navbar-collapse justify-content-center bg-dark " id="navbarSupportedContent2">
+               <ul class="navbar-nav">
+                 <li class="nav-item dropdown mx-4">
+                   <a class="nav-link dropdown-toggle  text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Tüm Laptoplar
+                   </a>
+                   <ul class="dropdown-menu  dropdown-menu-dark">
+                     <li><a class="dropdown-item text-light" href="all.html">Bütün Bilgisayarlar</a></li>
+                     <li><a class="dropdown-item text-light" href="oyunLaptoplar.html">Oyun Bilgisayarları</a></li>
+                     <li><a class="dropdown-item text-light" href="isLaptoplar.html">İş Bilgisayarları</a></li>
+                     <li><a class="dropdown-item text-light" href="Aksesuarlar.html">Aksesuarlar</a></li>
+                   </ul>
+                 </li>
+               </ul>
+          
+               <ul class="navbar-nav">
+                   <li class="nav-item dropdown mx-4">
+                     <a class="nav-link dropdown-toggle  text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Oyun Bilgisayarları
+                     </a>
+                     <ul class="dropdown-menu dropdown-menu-dark">
+                     <li><a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="dropdown-item " href="abra.html">ABRA</a></li>
+                     <li><a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="dropdown-item " href="tulpar.html">TULPAR</a></li>
+                     <li><a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="dropdown-item " href="semruk.html">SEMRUK</a></li>
+                     </ul>
+                   </li>
+               </ul>
+          
+               <ul class="navbar-nav">
+                   <li class="nav-item dropdown mx-4">
+                       <a class="nav-link dropdown-toggle  text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         İş Bilgisayarları
+                       </a>
+          
+                       <ul class="dropdown-menu dropdown-menu-dark">
+                           <li><a style="font-family:Verdana, Geneva, Tahoma, sans-serif;" class="dropdown-item " href="huma.html">HUMA</a></li>
+                           <li><a style="font-family:Verdana, Geneva, Tahoma, sans-serif;" class="dropdown-item " href="markut.html">MARKUT</a></li>
+                           <li><a style="font-family:Verdana, Geneva, Tahoma, sans-serif;" class="dropdown-item " href="tulpar_creator.html">TULPAR CREATOR</a></li>
+                       </ul>
+                   </li>
+               </ul>
+          
+                   <ul class="navbar-nav">
+                     
+                       <li class="nav-item dropdown mx-4">
+                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           Aksesuarlar
+                         </a>
+                         <ul class="dropdown-menu dropdown-menu-dark">
+                           <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item " href="klavye.html">KLAVYE</a></li>
+                           <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item " href="fare.html">FARE</a></li>
+                           <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item " href="kulaklık.html">KULAKIK</a></li>
+                           <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item " href="monitör.html">MONİTÖR</a></li>
+                         </ul>
+                       </li>
+                   </ul>
+             </div>
+           </div>
+          </nav>
+
+  <div class="container border-top pt-5">
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Ekran çözünürlüğü oldukça iyi, detaylar net görünüyor. Özellikle grafik tasarım işlerinde bu laptopu çok rahat kullanıyorum. Sadece ısı problemi zaman zaman sıkıntı yaratabiliyor.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Fare</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Ses kalitesi kesinlikle çok iyi, ama biraz ağır ve kulağımı uzun süre tutmak zor oluyor. Yine de sesin netliği ve basslar çok tatmin edici. Mikrofon da oldukça net.
+
+
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Fiyatı pahalı gelebilir ama kullandıktan sonra kesinlikle hak ettiğini düşünüyorum. Farenin hassasiyetinin arttığını hissedeceksiniz.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Tam anlamıyla bir multimedya canavarı! Film izlerken ya da oyun oynarken ekran kalitesi çok iyi. Ama batarya biraz kısa gidiyor. Yine de taşınabilirliği ve performansı çok iyi.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Klavye</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Yazma deneyimi mükemmel! Tuşlar yumuşak, her tuş için geri tepme çok güzel. Işıklandırması da gece kullanımını kolaylaştırıyor. Ancak bazı tuşların biraz daha sessiz olmasını tercih edebilirdim.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Klavye</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Tuşların arasındaki boşluk çok az, sık sık yanlış tuşa basıyorum. Tuşlar çok gürültülü, ofiste kullanınca çevremdekiler şikayet ediyor.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Bu laptopun taşıması çok kolay. Hafif ve kompakt, çalışırken yer kaplamıyor. Ancak performans açısından biraz daha güçlü olabilirdi. Özellikle video düzenlemelerde biraz zorlanıyor.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Ses çok net, ancak dışarıdan gelen sesleri çok iyi izole etmiyor. Gürültülü ortamlarda biraz zorlanıyorsunuz. Yine de konforlu ve uzun süre takılabiliyor.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Fare</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Fiyat/performans oranı mükemmel. Yüksek hassasiyetli, özellikle FPS oyunlarında çok rahat. Tek eksiği kablosunun biraz kısa olması, ama yine de oldukça rahat.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Ses kalitesi beklentimin altında, özellikle yüksek seslerde cızırtı yapıyor. Kulağa tam oturmuyor, küçük hareketlerde bile düşüyor.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Kötü yönü bataryasının çabuk tükenmesi ama diğer özellikleri oldukça iyi. Ekran çok parlak, dışarıda kullanırken bile netlik kaybolmuyor. Performans olarak da sorun yaşatmıyor.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Klavye</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Kısa yol tuşları ve ergonomik tasarımı harika. Yazarken çok sessiz çalışıyor, bu yüzden gece yazarken kimseyi rahatsız etmiyorum. Fakat numara tuşları biraz daha büyük olabilirdi.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Ses deneyimi gerçekten hoş. Basslar derin, tizler ise net. Ancak kulaklık oldukça ağır, uzun süre takıldığında kulaklarımda baskı hissediyorum. Fiyatına göre gayet iyi bir seçenek.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            İşlemci hızına bayıldım, açılış çok hızlı. Çoklu görevlerde de mükemmel. Fakat fan sesi bazı zamanlarda biraz rahatsız edici olabiliyor. Yine de fiyatına göre iyi bir ürün.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Fare</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Bu fareyi tam olarak oyun amaçlı aldım ve gerçekten tatmin oldum. Hassasiyet çok yüksek ve hızlı tepki veriyor. Ergonomisi de çok rahat. Tekrar almak isteyebilirim.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Fiyatına göre oldukça kaliteli bir ses deneyimi sunuyor. Ancak kulaklık başlıkları biraz küçük kalabiliyor, uzun süreli kullanımda rahatsızlık verebiliyor. Yine de ses kalitesi çok tatmin edici.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Renk doğruluğu çok iyi, özellikle grafik tasarım yapanlar için harika bir seçenek. Ama bataryası, sürekli dışarıda çalışacak biri için yetersiz kalabilir.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Klavye</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Tuşlar gerçekten çok rahat ve geri tepmesi harika. Yazarken her tuşu hissedebiliyorsunuz, bu da hızımı artırıyor. Işıklandırma oldukça şık, ama daha fazla renk seçeneği olabilirdi.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Fare</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Ergonomik tasarımı sayesinde uzun saatler boyunca bile rahatça kullanabiliyorum. Tekerleği çok rahat kayıyor ve hassasiyeti mükemmel. Ayrıca tıklama hissiyatı çok düzgün.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Bence bu laptop, fiyatına göre çok iyi bir performans sunuyor. Özellikle yazılım geliştirme için oldukça kullanışlı. Ancak biraz ağır, taşırken zorlanabiliyorum.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Genel olarak ses kalitesinden memnunum ama biraz daha bass yoğunluğu olabilirdi. Ayrıca kulaklık oldukça büyük ve taşırken yer kaplıyor. Yine de konforlu ve ses netliği çok iyi.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Monitör</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Renkler çok cansız ve mat duruyor. Görsel işler için kesinlikle uygun değil. Monitörün kenarlarında ışık sızması var, özellikle karanlık sahnelerde çok rahatsız edici oluyor.   
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Klavye</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Yazı yazarken fazla ses çıkarmıyor, tuşlar oldukça yumuşak ve hızlı tepki veriyor. Ancak bazı tuşların biraz daha büyük olmasını isterdim. Işıklandırması da gece kullanımında çok kullanışlı.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Bu laptopu hem iş hem eğlence için kullanıyorum ve çok verimli. Multimedya işlerini çok hızlı yapabiliyor. Fakat ekran biraz daha büyük olabilirdi, özellikle film izlerken daha geniş bir ekran isterdim.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Fare</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Çok hızlı ve hassas bir fare, özellikle oyun oynarken çok başarılı. Elimde kaymıyor ve tıklama hissiyatı çok iyi. Ancak kablosu biraz kısa, oyun oynarken biraz zorlanabiliyorum.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★★
+        </div>
+        <p class="card-text text-light">Harika ekran çözünürlüğü var, grafik tasarımda detayları çok net görebiliyorum. Ancak batarya süresi biraz daha uzun olabilirdi, sık sık şarja takmak gerekiyor.</p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 98</span>
+        <span><i class="far fa-comment"></i>👎  15</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Kulaklık</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Fiyatına göre gerçekten iyi bir ses deneyimi sunuyor. Ancak ses geçişleri bazen çok net değil ve baslar çok yoğun. Yine de günlük kullanım için yeterli bir ürün.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+    <div class="card bg-dark text-white border-secondary mb-4">
+      <div class="card-body">
+        <p class="card-text text-light">Laptop</p>
+        <div class="mb-2 text-warning">
+          ★★★★☆
+        </div>
+        <p class="card-text text-light">
+            Performansı beklentimin çok altında kaldı. Basit bir tarayıcı bile donabiliyor bazen, ciddi hayal kırıklığı yaşadım.
+        </p>
+      </div>
+      <div class="card-footer border-top border-secondary d-flex justify-content-between small text-muted">
+      </div>
+      <div class="card-footer bg-dark border-0 d-flex justify-content-start gap-3">
+        <span><i class="far fa-thumbs-up"></i> 👍 58</span>
+        <span><i class="far fa-comment"></i>👎  5</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="mt-5 pt-5 bg-dark text-light ">
+  
+    <hr class="my-4 border-light" style="position: absolute; left: 0; width: 100%;">
+  
+    <div class="container">
+      
+        <div style="margin-top: 50px;" class="row">
+            <div class="col-md-4 text-end text-md-start mb-4 mt-3">
+                <button class="btn btn-outline-info w-100 mb-2">📩 MESAJ GÖNDER</button>
+                <button class="btn btn-outline-light w-100">📞 0535 555 28 16</button>
+            </div>
+            <div class="col-md-8 text-md-end text-center">
+                <h5>Monster Destek</h5>
+                <a href="magazalar.html" class="fs-5 text-warning d-block">Mağazalar Ve İletişim</a>
+                <a href="ömur_boyu_bakım.html" class="fs-5 text-warning d-block">Ömür Boyu Bakım</a>
+                <a href="teknik_servis.html" class="fs-5 text-warning d-block">Teknik Servis</a>
+                <a href="randevu.html" class="fs-5 text-warning d-block">Randevu</a>
+            </div>
+        </div>
+  
+        <hr class="my-4 pt-5  border-light" style="position: absolute; left: 0; width: 100%;">
+  
+  
+        <div class="accordion" id="footerMenu">
+            
+            <div class="accordion-item bg-dark border-light mt-5">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#urunler">
+                        Ürünler
+                    </button>
+                </h2>
+                <div id="urunler" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="all.html" class="fs-5 text-light d-block text-decoration-none">Tüm Laptoplar</a><hr class="my-2 border-light">
+                        <a href="oyunLaptoplar.html" class="fs-5 text-light d-block text-decoration-none">Oyun Bilgisayarları</a><hr class="my-2 border-light">
+                        <a href="isLaptoplar.html" class="fs-5 text-light d-block text-decoration-none">İş Bilgisayarları</a><hr class="my-2 border-light">
+                        <a href="Aksesuarlar.html" class="fs-5 text-light d-block text-decoration-none">Aksesuarlar</a><hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+  
+            <div class="accordion-item bg-dark border-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#oyunPC">
+                        Oyun Bilgisayarları
+                    </button>
+                </h2>
+                <div id="oyunPC" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="abra.html" class="fs-5 text-light d-block text-decoration-none">Abra</a><hr class="my-2 border-light">
+                        <a href="tulpar.html" class="fs-5 text-light d-block text-decoration-none">Tulpar</a><hr class="my-2 border-light">
+                        <a href="semruk.html" class="fs-5 text-light d-block text-decoration-none">Semruk</a><hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+  
+            
+            <div class="accordion-item bg-dark border-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#isPC">
+                        İş Bilgisayarları
+                    </button>
+                </h2>
+                <div id="isPC" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="huma.html" class="fs-5 text-light d-block text-decoration-none">Huma</a><hr class="my-2 border-light">
+                        <a href="markut.html" class="fs-5 text-light d-block text-decoration-none">Markut</a><hr class="my-2 border-light">
+                        <a href="tulpar_creator.html" class="fs-5 text-light d-block text-decoration-none">Tulpar Creator</a><hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+  
+            
+            <div class="accordion-item bg-dark border-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#aksesuar">
+                        Aksesuarlar
+                    </button>
+                </h2>
+                <div id="aksesuar" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="fare.html" class="fs-5 text-light d-block text-decoration-none">Fare</a>  <hr class="my-2 border-light">
+                        <a href="klavye.html" class="fs-5 text-light d-block text-decoration-none">Klavye</a>  <hr class="my-2 border-light">
+                        <a href="kulaklık.html" class="fs-5 text-light d-block text-decoration-none">Kulaklık</a>  <hr class="my-2 border-light">
+                        <a href="monitör.html" class="fs-5 text-light d-block text-decoration-none">Monitör</a>  <hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="border-top: 5px solid rgb(230, 84, 0) ; margin-top: 10px;" class="mt-5 text-center p-4 bg-black">
+        <p style="display: inline;" class="">🔥 © 2025 ATİWARE Tüm Hakları Saklıdır. 🔥</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

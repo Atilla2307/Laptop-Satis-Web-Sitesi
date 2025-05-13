@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/2-Photoroom.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css.css">
+    <script src="js.js"></script>
+    <title>AtiWare</title>
+</head>
+<body class="bg-dark">
+
+    <style>
+      .navbar-nav::-webkit-scrollbar {
+          height: 4px; 
+      }
+  
+      .navbar-nav::-webkit-scrollbar-thumb {
+          background: linear-gradient(45deg, #ff8c00, #ff2e63);
+          border-radius: 10px;
+      }
+  
+      .navbar-nav::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+      }
+  
+      .navbar-nav::-webkit-scrollbar-thumb:hover {
+          background: linear-gradient(45deg, #ff6a00, #e62e62);
+      }
+  </style>
+
+  
+      <nav style="bottom: 10px;" class="navbar navbar-expand-lg bg-dark">
+          <div class="container-fluid">
+              <a class="navbar-brand ms-3" href="index.htm">
+                  <img src="img/logo2.png" alt="image" width="200" height="39">
+              </a>
+              
+              <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1">
+                  <i class="bi bi-list" style="color: white; font-size: 1.5rem;"></i> 
+              </button>
+              
+              <div style="padding: 0px;" class="collapse navbar-collapse bg-dark p-1" id="navbarSupportedContent1">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                  
+                  <form class="d-flex  me-5 pe-5 col-md-5" role="search">
+                    <div class="pt-2">
+                         <a href="index.htm" class="btn btn-outline-success fs-3">Mağazaya Geri Dön</a>
+                     </div>
+                      
+                    
+                      
+                  </form>
+      
+                  <div style="padding-top: 20px;" class="d-flex align-items-center mt-2 me-5 mt-lg-0">
+
+
+                    <button onclick="toggleGirisPanel()" class="btn btn-outline-warning position-relative" id="girisButon" style="position: fixed; right: 20px;">Giriş Yap</button>
+      
+                  <div id="girisPanel" style="position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background-color: #2c2c2c; box-shadow: -5px 0 20px rgba(0,255,85,0.5); z-index: 1050; transition: right 0.5s; padding: 40px; color: white; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                      <h3 id="panelBaslik">🧑 Kullanıcı Girişi</h3>
+      
+                      <input type="text" id="kullaniciAdi" placeholder="TC / E-Posta" class="giris-input"><br>
+                      <input type="password" id="sifre" placeholder="Şifre" class="giris-input">
+                      <input type="text" id="eposta" placeholder="E-Posta" class="giris-input kayit-alani" style="display: none;">
+                      <input type="text" id="telefon" placeholder="Telefon" class="giris-input kayit-alani" style="display: none;"><br>
+      
+                      <button onclick="girisYap()" id="girisBtn" class="btn giris-btn bg-success">Giriş Yap</button>
+                      <button onclick="toggleKayitModu()" id="kayitBtn" class="btn giris-btn bg-primary">Kayıt Ol</button>
+                      <button onclick="toggleGirisPanel()" class="btn giris-btn w-25 bg-warning">Geri</button>
+                  </div>
+      
+              <style>
+                  .giris-input {
+                      width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none;
+                  }
+                  .giris-btn {
+                      width: 100%; margin-top: 15px; padding: 12px; background-color: #00ff55;
+                      border: none; font-weight: bold; border-radius: 5px; font-size: 16px; color: black;
+                  }
+              </style>
+      
+              <script>
+                  let kayitModu = false;
+      
+                  function toggleGirisPanel() {
+                      const panel = document.getElementById("girisPanel");
+                      panel.style.right = panel.style.right === "0px" ? "-400px" : "0px";
+                  }
+      
+                  function toggleKayitModu() {
+                      kayitModu = !kayitModu;
+                      const kayitAlanlari = document.querySelectorAll(".kayit-alani");
+                      const panelBaslik = document.getElementById("panelBaslik");
+                      const girisBtn = document.getElementById("girisBtn");
+                      const kayitBtn = document.getElementById("kayitBtn");
+      
+                      if (kayitModu) {
+                          kayitAlanlari.forEach(el => el.style.display = "block");
+                          panelBaslik.textContent = "📝 Kayıt Ol";
+                          girisBtn.textContent = "Kayıt Ol";
+                          kayitBtn.textContent = "Giriş Yap";
+                      } else {
+                          kayitAlanlari.forEach(el => el.style.display = "none");
+                          panelBaslik.textContent = "🧑 Kullanıcı Girişi";
+                          girisBtn.textContent = "Giriş Yap";
+                          kayitBtn.textContent = "Kayıt Ol";
+                      }
+                  }
+      
+                  function girisYap() {
+                      const kullanici = document.getElementById("kullaniciAdi").value;
+                      const sifre = document.getElementById("sifre").value;
+                      const eposta = document.getElementById("eposta").value;
+                      const telefon = document.getElementById("telefon").value;
+      
+                      if (kayitModu) {
+                          if (kullanici && sifre && eposta && telefon) {
+                              alert("Kayıt başarılı!");
+                              toggleGirisPanel();
+                              location.reload();
+                          } else {
+                              alert("Tüm alanları doldurmalısın!");
+                          }
+                      } else {
+                          if (kullanici && sifre) {
+                              alert("Giriş başarılı!");
+                              toggleGirisPanel();
+                              document.getElementById("girisButon").innerHTML = `${kullanici} 👤 (Çıkış Yap)`;
+                              document.getElementById("girisButon").onclick = cikisYap;
+                          } else {
+                              alert("Kullanıcı adı ve şifre gir!");
+                          }
+                      }
+                  }
+      
+                  function cikisYap() {
+                      alert("Çıkış yapıldı.");
+                      document.getElementById("girisButon").innerHTML = "Giriş Yap";
+                      document.getElementById("girisButon").onclick = toggleGirisPanel;
+                      toggleGirisPanel(); // 
+                  }
+              </script>
+      
+                    
+      
+                    <button type="button" class="btn btn-primary position-relative" data-bs-toggle="offcanvas" data-bs-target="#sepetPaneli">
+                      <i class="bi bi-cart"></i> Sepet
+                      <span id="sepetAdet" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> 0</span>
+                  </button>
+                      
+                        
+                  </div>
+              </div>
+          </div>
+      </nav>
+      
+      <div style="background-image: linear-gradient(to right bottom, #ee1f00, #f34e00, #f86d00, #fc880f, #ffa025); height: 3px; width: 100v; background-color: red; position: relative; bottom:  10px;"> </div>
+      
+      <nav style="bottom: 10px;" class="navbar navbar-expand-lg bg-dark">
+        <div style="padding: 0px; margin: 0px;  margin-top: 0;" class="container-fluid justify-content-end">     
+          <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2">
+               <i class="bi bi-list" style="color: white; font-size: 1.5rem;"></i> 
+          </button>
+         
+      
+         <div style="margin-top: 8px;" class="collapse navbar-collapse justify-content-center bg-dark " id="navbarSupportedContent2">
+
+      
+            <ul class="navbar-nav px-3">
+                <li class="nav-item">
+                    <a style="color: #ce570c;" class="btn btn-outline-warning  fw-bold px-3" href="magazalar.html">Mağazalar Ve İletişim</a>
+                </li>
+           </ul>
+
+           <ul class="navbar-nav">
+                <li class="nav-item px-3">
+                    <a  class="btn btn-outline-warning  text-white fw-bold px-3" href="ömur_boyu_bakım.html">Ömür Boyu Bakım</a>
+                </li>
+           </ul>
+
+           <ul class="navbar-nav px-3">
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning text-white fw-bold px-3" href="randevu.html">Randevu</a>
+                </li>
+           </ul>
+      
+           <ul class="navbar-nav px-3">
+                <li class="nav-item">
+                    <a  class="btn btn-outline-warning text-white fw-bold px-3" href="teknik_servis.html">Teknik Servis</a>
+                </li>
+           </ul>
+
+         </div>
+       </div>
+      </nav>  
+
+      <div class="ps-5 ms-5 d-flex" >
+        <p class="text-start text-secondary"> <a style="text-decoration: none;" class="text-secondary" href="index.htm"> Anasayfa </a></p>
+        <p class="text-start text-secondary"> >  </p>
+        <p class="text-start "> <a style="text-decoration: none;" class="text-secondary" href="magazalar.html">Mağazalar Ve İletişim</a> </p>
+      </div>
+  
+  
+     
+    <div>
+        <div class="ratio ratio-16x9 w-50 mx-auto mt-5"  >
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1kFvWBQsZbA2a3rVbY-aGxTvbQRmq96w&ehbc=2E312F" width="600" height="450" style="border-top: 2px solid rgb(210, 81, 0); border-right: 2px solid rgb(210, 81, 0); border-left: 2px solid rgb(210, 81, 0); border-top-left-radius:10px ; border-top-right-radius: 10px;" allowfullscreen="" ></iframe>            
+        </div> 
+    
+        <div style="padding: 0; border-bottom: 3px solid rgb(210, 81, 0); border-right: 2px solid rgb(210, 81, 0); border-left: 2px solid rgb(210, 81, 0); border-bottom-left-radius:10px ; border-bottom-right-radius: 10px;" class="container w-50">
+            <div class="border bg-dark" style="border-top: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; max-height: 300px; overflow-y: auto;">
+
+                <hr style="color: #000000; margin-bottom: 0;">
+                <br><p class="ps-4 mb-2 text-danger" style="font-size: 25px;">AtiWare Anb Mağazası</p>
+                <p class="ps-4 pb-3 text-light" style="font-size: 17px;">Barbaros, 205. Sokak No:11, 34203 Bağcılar/İstanbul</p>
+                
+
+                <hr style="color: #000000; margin-bottom: 0;">
+                <br><p class="ps-4 mb-2 text-warning" style="font-size: 25px;">AtiWare Bağcılar Mağazası</p>
+                <p class="ps-4 pb-3 text-light" style="font-size: 17px;">İnönü, Hoca Ahmet Yesevi Cd. No:7, 34203 Bağcılar/İstanbul</p>
+               
+
+                <hr style="color: #000000; margin-bottom: 0;">
+                <br><p class="ps-4 mb-2 text-info" style="font-size: 25px;">AtiWare Beşiktaş Mağazası</p>
+                <p class="ps-4 pb-3 text-light" style="font-size: 17px;">Vişnezade, Dolmabahçe Cd. No:1, 34357 Beşiktaş/İstanbul</p>
+                
+
+                <hr style="color: #000000; margin-bottom: 0;">
+                <br><p class="ps-4 mb-2 text-success" style="font-size: 25px;">AtiWare Üsküdar Mağazası</p>
+                <p class="ps-4 pb-3 text-light" style="font-size: 17px;">Aziz Mahmut Hüdayi, Üsküdar Harem Sahil Yolu, 34668 Üsküdar/İstanbul</p>
+                <hr style="color: #000000;">
+
+            </div>
+          </div>
+    </div>
+
+    
+<style>
+        .accordion-item {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.accordion-item:hover {
+  border-color: #00ff00; 
+}
+
+</style>
+    
+
+    
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<footer class="mt-5 pt-5 bg-dark text-light ">
+      
+    <hr class="my-4 border-light" style="position: absolute; left: 0; width: 100%;">
+  
+    <div class="container">
+      
+        <div style="margin-top: 50px;" class="row">
+            <div class="col-md-4 text-end text-md-start mb-4 mt-3">
+                <button class="btn btn-outline-info w-100 mb-2">📩 MESAJ GÖNDER</button>
+                <button class="btn btn-outline-light w-100">📞 0535 555 28 16</button>
+            </div>
+            <div class="col-md-8 text-md-end text-center">
+                <h5>Monster Destek</h5>
+                <a href="#" class="fs-5 text-warning d-block">Çözüm Merkezi</a>
+                <a href="#" class="fs-5 text-warning d-block">Çağrı Merkezi</a>
+                <a href="#" class="fs-5 text-warning d-block">Ömür Boyu Bakım</a>
+            </div>
+        </div>
+  
+        <hr class="my-4 pt-5  border-light" style="position: absolute; left: 0; width: 100%;">
+  
+  
+        <div class="accordion" id="footerMenu">
+            
+            <div class="accordion-item bg-dark border-light mt-5">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#urunler">
+                        Ürünler
+                    </button>
+                </h2>
+                <div id="urunler" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="all.html" class="fs-5 text-light d-block text-decoration-none">Tüm Laptoplar</a><hr class="my-2 border-light">
+                        <a href="oyunLaptoplar.html" class="fs-5 text-light d-block text-decoration-none">Oyun Bilgisayarları</a><hr class="my-2 border-light">
+                        <a href="isLaptoplar.html" class="fs-5 text-light d-block text-decoration-none">İş Bilgisayarları</a><hr class="my-2 border-light">
+                        <a href="Aksesuarlar.html" class="fs-5 text-light d-block text-decoration-none">Aksesuarlar</a><hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+  
+            <div class="accordion-item bg-dark border-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#oyunPC">
+                        Oyun Bilgisayarları
+                    </button>
+                </h2>
+                <div id="oyunPC" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="abra.html" class="fs-5 text-light d-block text-decoration-none">Abra</a><hr class="my-2 border-light">
+                        <a href="tulpar.html" class="fs-5 text-light d-block text-decoration-none">Tulpar</a><hr class="my-2 border-light">
+                        <a href="semruk.html" class="fs-5 text-light d-block text-decoration-none">Semruk</a><hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+  
+            
+            <div class="accordion-item bg-dark border-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#isPC">
+                        İş Bilgisayarları
+                    </button>
+                </h2>
+                <div id="isPC" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="huma.html" class="fs-5 text-light d-block text-decoration-none">Huma</a><hr class="my-2 border-light">
+                        <a href="markut.html" class="fs-5 text-light d-block text-decoration-none">Markut</a><hr class="my-2 border-light">
+                        <a href="tulpar_creator.html" class="fs-5 text-light d-block text-decoration-none">Tulpar Creator</a><hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+  
+            
+            <div class="accordion-item bg-dark border-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#aksesuar">
+                        Aksesuarlar
+                    </button>
+                </h2>
+                <div id="aksesuar" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                    <div class="accordion-body">
+                        <a href="fare.html" class="fs-5 text-light d-block text-decoration-none">Fare</a>  <hr class="my-2 border-light">
+                        <a href="klavye.html" class="fs-5 text-light d-block text-decoration-none">Klavye</a>  <hr class="my-2 border-light">
+                        <a href="kulaklık.html" class="fs-5 text-light d-block text-decoration-none">Kulaklık</a>  <hr class="my-2 border-light">
+                        <a href="monitör.html" class="fs-5 text-light d-block text-decoration-none">Monitör</a>  <hr class="my-2 border-light">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="border-top: 5px solid rgb(230, 84, 0) ; margin-top: 10px;" class="mt-5 text-center p-4 bg-black">
+        <p style="display: inline;" class="">🔥 © 2025 ATİWARE Tüm Hakları Saklıdır. 🔥</p>
+    </div>
+  </footer>
+  <div class="offcanvas offcanvas-end bg-dark text-white w-50" tabindex="-1" id="sepetPaneli" aria-labelledby="sepetPaneliLabel">
+    <div class="offcanvas-header border-bottom border-secondary">
+      <h5 class="offcanvas-title" id="sepetPaneliLabel">Sepetim</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Kapat"></button>
+    </div>
+    <div class="offcanvas-body" id="sepetListe">
+      <p class="text-muted">Sepetiniz şu an boş.</p>
+    </div>
+    <div class="offcanvas-footer bg-light text-dark p-3 border-top border-secondary">
+      <h5 class="mb-2">Toplam: <span id="toplamFiyat">.00</span> TL</h5>
+      <h5 class="mb-2">Toplam: <span id="toplamFiyat">.00</span> TL</h5>
+    <button class="btn btn-success w-100 mb-2" onclick="window.location.href='ödeme.html'">Ödemeye Git</button>
+      <button class="btn btn-outline-danger w-100" onclick="sepetiBosalt()">Sepeti Boşalt</button>
+    </div>
+  </div>
+  </body>
+</html>

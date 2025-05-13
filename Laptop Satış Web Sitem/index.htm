@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/2-Photoroom.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <script src="js.js"></script>
+    <title>AtiWare</title>
+</head>
+<body class="bg-dark text-light min-vh-100">
+
+<style>
+    .navbar-nav::-webkit-scrollbar {
+    height: 4px; 
+}
+
+.navbar-nav::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff8c00, #ff2e63); 
+    border-radius: 10px;
+}
+
+.navbar-nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 10px;
+}
+
+.navbar-nav::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ff6a00, #e62e62);
+}
+
+</style>
+    
+
+<main class="flex-grow-1">
+
+<!-- 
+<div style="height: 130px;" class="offcanvas bg-dark offcanvas-start show w-100 d-flex align-items-center " 
+     tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel" 
+     data-bs-backdrop="static" style="height: 110px;">
+    
+    <button type="button" class="btn-close position-absolute top-0 end-0 m-3" 
+            data-bs-dismiss="offcanvas" aria-label="Close" 
+            style="filter: invert(18%) sepia(92%) saturate(7484%) hue-rotate(358deg) brightness(91%) contrast(117%);">
+    </button>
+
+    <div class="pt-3 align-items-center gap-5 h-100">
+        <p class="fs-2 fw-bold text-light mb-0 text-center">🔥 Nisan Ayı İndirimlerini Başladı! 🔥</p><br><p class="fs-6 fw-bold text-light mb-0 text-center">⚡ Kaçırmayın ⚡</p>
+    </div>
+</div>-->
+
+   
+
+
+
+
+<nav style="padding: 0; height: 58px;" class="navbar bg-dark">
+    <div  class="container-fluid">
+        <div  class="d-flex w-100 overflow-auto ms-7 justify-content-end">
+            <ul class="navbar-nav flex-row flex-nowrap overflow-auto"  
+                style="white-space: nowrap; font-size: 12px;">
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="yorum.html">Yorumlar</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="yorum.html">Yorumlar</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="magazalar.html">Mağazalar Ve İletişim</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="teknik_servis.html">Teknik Servis</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="randevu.html">Randevu</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: #de6f00;" class="nav-link  fw-bold px-3" href="ömur_boyu_bakım.html">Ömür Boyu Bakım</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav style="bottom: 10px;" class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand ms-3" href="#">
+            <img src="img/logo2.png" alt="image" width="200" height="39">
+        </a>
+        
+        <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent1">
+            <i class="bi bi-list" style="color: white; font-size: 1.5rem;"></i> 
+        </button>
+        
+        <div style="padding: 0px;" class="collapse navbar-collapse bg-dark p-1" id="navbarSupportedContent1">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            
+            <form class="d-flex col-md-7 mx-auto" role="search">
+                <input class="form-control me-2 p-2 w-100" type="search" placeholder="Arama Yap" style="color: black; background-color: white; border: 3px solid rgb(26, 219, 0);">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+
+            <div style="padding-top: 20px;" class="d-flex align-items-center mt-1 me-5 mt-lg-0">
+
+
+              <button onclick="toggleGirisPanel()" class="btn btn-outline-warning position-relative" id="girisButon" style="position: fixed; right: 20px;">Giriş Yap</button>
+
+            <div id="girisPanel" style="position: fixed; top: 0; right: -400px; width: 400px; height: 100%; background-color: #2c2c2c; box-shadow: -5px 0 20px rgba(0,255,85,0.5); z-index: 1050; transition: right 0.5s; padding: 40px; color: white; border-top-left-radius: 20px; border-bottom-left-radius: 20px;">
+                <h3 id="panelBaslik">🧑 Kullanıcı Girişi</h3>
+
+                <input type="text" id="kullaniciAdi" placeholder="TC / E-Posta" class="giris-input"><br>
+                <input type="password" id="sifre" placeholder="Şifre" class="giris-input">
+                <input type="text" id="eposta" placeholder="E-Posta" class="giris-input kayit-alani" style="display: none;">
+                <input type="text" id="telefon" placeholder="Telefon" class="giris-input kayit-alani" style="display: none;"><br>
+
+                <button onclick="girisYap()" id="girisBtn" class="btn giris-btn bg-success">Giriş Yap</button>
+                <button onclick="toggleKayitModu()" id="kayitBtn" class="btn giris-btn bg-primary">Kayıt Ol</button>
+                <button onclick="toggleGirisPanel()" class="btn giris-btn w-25 bg-warning">Geri</button>
+            </div>
+
+        <style>
+            .giris-input {
+                width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none;
+            }
+            .giris-btn {
+                width: 100%; margin-top: 15px; padding: 12px; background-color: #00ff55;
+                border: none; font-weight: bold; border-radius: 5px; font-size: 16px; color: black;
+            }
+        </style>
+
+        <script>
+            let kayitModu = false;
+
+            function toggleGirisPanel() {
+                const panel = document.getElementById("girisPanel");
+                panel.style.right = panel.style.right === "0px" ? "-400px" : "0px";
+            }
+
+            function toggleKayitModu() {
+                kayitModu = !kayitModu;
+                const kayitAlanlari = document.querySelectorAll(".kayit-alani");
+                const panelBaslik = document.getElementById("panelBaslik");
+                const girisBtn = document.getElementById("girisBtn");
+                const kayitBtn = document.getElementById("kayitBtn");
+
+                if (kayitModu) {
+                    kayitAlanlari.forEach(el => el.style.display = "block");
+                    panelBaslik.textContent = "📝 Kayıt Ol";
+                    girisBtn.textContent = "Kayıt Ol";
+                    kayitBtn.textContent = "Giriş Yap";
+                } else {
+                    kayitAlanlari.forEach(el => el.style.display = "none");
+                    panelBaslik.textContent = "🧑 Kullanıcı Girişi";
+                    girisBtn.textContent = "Giriş Yap";
+                    kayitBtn.textContent = "Kayıt Ol";
+                }
+            }
+
+            function girisYap() {
+                const kullanici = document.getElementById("kullaniciAdi").value;
+                const sifre = document.getElementById("sifre").value;
+                const eposta = document.getElementById("eposta").value;
+                const telefon = document.getElementById("telefon").value;
+
+                if (kayitModu) {
+                    if (kullanici && sifre && eposta && telefon) {
+                        alert("Kayıt başarılı!");
+                        toggleGirisPanel();
+                        location.reload();
+                    } else {
+                        alert("Tüm alanları doldurmalısın!");
+                    }
+                } else {
+                    if (kullanici && sifre) {
+                        alert("Giriş başarılı!");
+                        toggleGirisPanel();
+                        document.getElementById("girisButon").innerHTML = `${kullanici} 👤 (Çıkış Yap)`;
+                        document.getElementById("girisButon").onclick = cikisYap;
+                    } else {
+                        alert("Kullanıcı adı ve şifre gir!");
+                    }
+                }
+            }
+
+            function cikisYap() {
+                alert("Çıkış yapıldı.");
+                document.getElementById("girisButon").innerHTML = "Giriş Yap";
+                document.getElementById("girisButon").onclick = toggleGirisPanel;
+                toggleGirisPanel(); // 
+            }
+        </script>
+
+              
+
+              <button type="button" class="btn btn-primary position-relative" data-bs-toggle="offcanvas" data-bs-target="#sepetPaneli">
+                <i class="bi bi-cart"></i> Sepet
+                <span id="sepetAdet" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> 0</span>
+            </button>
+                
+                
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div style="background-image: linear-gradient(to right bottom, #ee1f00, #f34e00, #f86d00, #fc880f, #ffa025); height: 3px; width: 100v; background-color: red; position: relative; bottom:  10px;"> </div>
+
+<nav style="bottom: 10px;" class="navbar navbar-expand-lg bg-dark">
+  <div style="padding: 0px; margin: 0px;  margin-top: 0;" class="container-fluid justify-content-end">     
+    <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2">
+         <i class="bi bi-list" style="color: white; font-size: 1.5rem;"></i> 
+    </button>
+   
+
+   <div style="margin-top: 8px;" class="collapse navbar-collapse justify-content-center bg-dark " id="navbarSupportedContent2">
+     <ul class="navbar-nav">
+       <li class="nav-item dropdown mx-4">
+         <a style="color: #000;" class="nav-link dropdown-toggle  text-success" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           Tüm Laptoplar
+         </a>
+         <ul class="dropdown-menu  dropdown-menu-dark">
+           <li><a class="dropdown-item text-light" href="all.html">Bütün Bilgisayarlar</a></li>
+           <li><a class="dropdown-item text-light" href="oyunLaptoplar.html">Oyun Bilgisayarları</a></li>
+           <li><a class="dropdown-item text-light" href="isLaptoplar.html">İş Bilgisayarları</a></li>
+           <li><a class="dropdown-item text-light" href="Aksesuarlar.html">Aksesuarlar</a></li>
+         </ul>
+       </li>
+     </ul>
+
+     <ul class="navbar-nav">
+         <li class="nav-item dropdown mx-4">
+           <a class="nav-link dropdown-toggle  text-success" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Oyun Bilgisayarları
+           </a>
+           <ul class="dropdown-menu dropdown-menu-dark">
+           <li><a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="dropdown-item text-danger" href="abra.html">ABRA</a></li>
+           <li><a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="dropdown-item text-danger" href="tulpar.html">TULPAR</a></li>
+           <li><a style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="dropdown-item text-danger" href="semruk.html">SEMRUK</a></li>
+           </ul>
+         </li>
+     </ul>
+
+     <ul class="navbar-nav">
+         <li class="nav-item dropdown mx-4">
+             <a class="nav-link dropdown-toggle  text-success" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               İş Bilgisayarları
+             </a>
+
+             <ul class="dropdown-menu dropdown-menu-dark">
+                 <li><a style="font-family:Verdana, Geneva, Tahoma, sans-serif;" class="dropdown-item text-info" href="huma.html">HUMA</a></li>
+                 <li><a style="font-family:Verdana, Geneva, Tahoma, sans-serif;" class="dropdown-item text-info" href="markut.html">MARKUT</a></li>
+                 <li><a style="font-family:Verdana, Geneva, Tahoma, sans-serif;" class="dropdown-item text-info" href="tulpar_creator.html">TULPAR CREATOR</a></li>
+             </ul>
+         </li>
+     </ul>
+
+         <ul class="navbar-nav">
+           
+             <li class="nav-item dropdown mx-4">
+               <a class="nav-link dropdown-toggle text-success" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Aksesuarlar
+               </a>
+               <ul class="dropdown-menu dropdown-menu-dark">
+                 <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item text-warning" href="klavye.html">KLAVYE</a></li>
+                 <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item text-warning" href="fare.html">FARE</a></li>
+                 <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item text-warning" href="kulaklık.html">KULAKIK</a></li>
+                 <li><a style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" class="dropdown-item text-warning" href="monitör.html">MONİTÖR</a></li>
+               </ul>
+             </li>
+         </ul>
+   </div>
+ </div>
+</nav>
+
+
+<div style="bottom: 10px; "  id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="active" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="carusel_foto/carusel_foto_5.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="carusel_foto/carusel_foto_3.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="carusel_foto/carusel_foto_4.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item ">
+        <img src="carusel_foto/carusel_foto_2.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="carusel_foto/carusel_foto_1.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="carusel_foto/carusel_foto_6.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<style>
+ 
+  @media (max-width: 767.98px) {
+      .responsive-image {
+          content: url('carusel_foto/yarısı.png'); 
+      }
+  }
+</style>
+
+<img src="img/Web_1.png" class="d-block w-100 responsive-image" alt="...">
+
+<div class="position-relative w-100" style="top: 10px; padding-bottom: 10px;">
+  <img src="img/web.png" class="img-fluid" alt="Monster Notebook">
+
+  <div class="d-none d-md-block" 
+       style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); 
+              color: white; text-align: left; font-family: Arial, sans-serif;">
+    <h2 class="display-4 fs-1 text-success fw-bold text-wrap">PERFORMANSIN YENİ TANIMI</h2>
+    <p class="lead mt-3 text-wrap">Intel® Core™ 14.Nesil AtiWare Notebooklar Şimdi Satışta!</p>
+    <p class="fs-5 text-secondary text-wrap">Intel® Core™ 14.Nesil işlemciler ile taviz vermeden oyun oynayın.</p>
+    <a href="all.html" class="btn btn-outline-warning fw-bold fs-4 mt-2">HEMEN İNCELE</a>
+  </div>
+
+  <div class="d-block d-md-none text-white text-start translate-middle"
+  style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); 
+              color: white; text-align: left; font-family: Arial, sans-serif;">
+    <h2 tyle="font-size: 7px;" class="h6 text-success fw-bold text-wrap">PERFORMANSIN YENİ TANIMI</h2>
+    <p style="font-size: 7px;" class="small mt-2 text-wrap">Intel® Core™ 14.Nesil AtiWare Notebooklar Şimdi Satışta!</p>
+    <p style="font-size: 7px;" class="small text-secondary text-wrap">Intel® Core™ 14.Nesil işlemciler ile taviz vermeden oyun oynayın.</p>
+    <a style="font-size: 10px;"  href="all.html" class="btn btn-outline-warning fw-bold btn-sm">HEMEN İNCELE</a>
+  </div>
+</div>
+
+<style>
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  
+  .image-wrapper {
+    width: 49%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+  }
+
+  
+  .image-wrapper img {
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+ 
+  .image-wrapper:hover img {
+    transform: scale(1.1);
+  }
+
+  
+  .image-text {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6); 
+    color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .image-wrapper {
+      width: 100%;
+    }
+  }
+</style>
+
+<div style="padding-top: 15px;" class="image-container">
+  <div class="image-wrapper">
+    <img src="img/gaming_2x.jpg" alt="Gaming">
+    <div style="background-color: transparent;" class="image-text"><a style="color: #2feb00; text-decoration: none; font-size: 30px;" href="Aksesuarlar.html">Aksesuarlar</a></div>
+  </div>
+  <div class="image-wrapper">
+    <img src="img/Huma_2x.jpg" alt="Huma">
+    <div style="background-color: transparent; position: absolute; bottom: 10px; right: 10px; text-align: right;" class="image-text">
+      <a style="text-decoration: none; color: #2feb00; font-size: 30px;" href="huma.html">Huma Laptop</a>
+    </div>
+  </div>
+  
+</div>
+
+<video class="modern-video" controls>
+  <source src="video/laptop trailer.mp4" type="video/mp4">
+</video>
+
+<style>
+  .modern-video {
+    width: 100%;
+    height: auto;
+    max-width: 1860px;
+    display: block;
+    margin: 20px auto; 
+    border-radius: 15px; 
+    box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.3); 
+    border: 3px solid rgb(81, 255, 0); 
+    background-color: #000; 
+    overflow: hidden; 
+  }
+</style>
+
+<style>
+  /* Styling for the text container */
+  .text-container {
+    color: #333; /* Text color */
+    font-family: Arial, sans-serif; /* Font style */
+    font-size: 16px; /* Text size */
+    line-height: 1.6; /* Line spacing */
+    overflow: hidden; /* Hide overflowing content */
+    max-height: 80px; /* Initial visible height */
+    transition: max-height 0.3s ease-in-out; /* Smooth toggle effect */
+  }
+
+  .text-container.expanded {
+    max-height: none; /* Show full content when expanded */
+  }
+
+  /* Styling for the toggle button */
+  .toggle-button {
+    display: block;
+    margin-top: 10px;
+    color: #007bff; /* Button text color */
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: left;
+    font-size: 14px;
+  }
+</style>
+
+<div>
+  <div style="position: relative; top: 120px;" id="collapsibleText" class="text-container">
+    <div class="d-flex flex-column align-items-center w-100 " style="   color: rgb(148, 147, 147); font-size: 18px; font-family: Arial, Helvetica, sans-serif; ">
+      <p class="text-start w-50">
+        Atıware Notebook, yüksek performansı ve uygun fiyatlarıyla dikkat çekiyor. Yılların tecrübesiyle şekillendirilen modeller, her kullanıcının ihtiyacına göre farklı seçenekler sunuyor.
+      </p>
+      <p class="text-start w-50">
+        Türk mitolojisinden esinlenen Abra, Tulpar, Semruk, Huma ve Markut serileri, oyun, iş ve profesyonel kullanım için tasarlanmış. Her biri güçlü donanımlarla taşınabilir bilgisayar deneyimi sunuyor.
+      </p>
+      
+      <p class="text-start w-50">
+        Abra serisi, Full HD çözünürlükte oyun oynamayı mümkün kılıyor. Tulpar serisi ise 2K ve üzeri çözünürlüklerde oyun performansı sağlıyor. Semruk, en güçlü oyun deneyimini sunuyor.
+      
+      <p class="text-start w-50">
+        Huma serisi, güçlü ve işlevsel dizüstü bilgisayarlarla iş dünyasında öne çıkıyor. Markut serisi ise 3D tasarım ve render gibi yüksek işlem gücü gerektiren işler için ideal.
+      </p>
+      
+      <p class="text-start w-50">
+        Atıware, satış sonrası ücretsiz bakım ve iade garantisi sunarak kullanıcı memnuniyetine önem veriyor. Ölü piksel durumunda ekran değişimi gibi ek hizmetlerle güvence sağlıyor.
+      </p>
+    
+      <span class="text-start w-50">
+        Atıware, satış sonrası ücretsiz bakım ve iade garantisi sunarak kullanıcı 
+        memnuniyetine önem veriyor. Ölü piksel durumunda ekran değişimi gibi ek hizmetlerle güvence sağlıyor.
+      </span>
+    </div>
+  </div>
+
+
+
+  <span style="padding-bottom: 150px; position: relative; text-align: center; top: 130px; color: #2feb00; font-size: 20px;" id="toggleButton" class="toggle-button">Daha fazla göster</span>
+</div>
+
+<script>
+
+  const collapsibleText = document.getElementById('collapsibleText');
+  const toggleButton = document.getElementById('toggleButton');
+
+  toggleButton.addEventListener('click', () => {
+  
+    collapsibleText.classList.toggle('expanded');
+
+ 
+    if (collapsibleText.classList.contains('expanded')) {
+      toggleButton.innerHTML = 'Daha az göster';
+    } else {
+      toggleButton.innerHTML = 'Daha fazla göster';
+    }
+  });
+</script>
+ 
+</main>
+
+ <footer class="mt-5 pt-5 bg-dark text-light ">
+  
+  <hr class="my-4 border-light" style="position: absolute; left: 0; width: 100%;">
+
+  <div class="container">
+    
+      <div style="margin-top: 50px;" class="row">
+          <div class="col-md-4 text-end text-md-start mb-4 mt-3">
+              <button class="btn btn-outline-info w-100 mb-2"><a href="mailto:atillafison@gmail.com" class="text-decoration-none text-light">📩 MESAJ GÖNDER</a></button>
+              <button class="btn btn-outline-light w-100"><a href="tel:+90 555 485 28 55 " class="text-decoration-none ">📞 0535 555 28 16</a></button>
+          </div>
+          <div class="col-md-8 text-md-end text-center">
+              <h5>Monster Destek</h5>
+              <a href="magazalar.html" class="fs-5 text-warning d-block">Mağazalar Ve İletişim</a>
+              <a href="ömur_boyu_bakım.html" class="fs-5 text-warning d-block">Ömür Boyu Bakım</a>
+              <a href="teknik_servis.html" class="fs-5 text-warning d-block">Teknik Servis</a>
+              <a href="randevu.html" class="fs-5 text-warning d-block">Randevu</a>
+          </div>
+      </div>
+
+      <hr class="my-4 pt-5  border-light" style="position: absolute; left: 0; width: 100%;">
+
+
+      <div class="accordion" id="footerMenu">
+          
+          <div class="accordion-item bg-dark border-light mt-5">
+              <h2 class="accordion-header">
+                  <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#urunler">
+                      Ürünler
+                  </button>
+              </h2>
+              <div id="urunler" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                  <div class="accordion-body">
+                      <a href="all.html" class="fs-5 text-light d-block text-decoration-none">Tüm Laptoplar</a><hr class="my-2 border-light">
+                      <a href="oyunLaptoplar.html" class="fs-5 text-light d-block text-decoration-none">Oyun Bilgisayarları</a><hr class="my-2 border-light">
+                      <a href="isLaptoplar.html" class="fs-5 text-light d-block text-decoration-none">İş Bilgisayarları</a><hr class="my-2 border-light">
+                      <a href="Aksesuarlar.html" class="fs-5 text-light d-block text-decoration-none">Aksesuarlar</a><hr class="my-2 border-light">
+                  </div>
+              </div>
+          </div>
+
+          <div class="accordion-item bg-dark border-light">
+              <h2 class="accordion-header">
+                  <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#oyunPC">
+                      Oyun Bilgisayarları
+                  </button>
+              </h2>
+              <div id="oyunPC" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                  <div class="accordion-body">
+                      <a href="abra.html" class="fs-5 text-light d-block text-decoration-none">Abra</a><hr class="my-2 border-light">
+                      <a href="tulpar.html" class="fs-5 text-light d-block text-decoration-none">Tulpar</a><hr class="my-2 border-light">
+                      <a href="semruk.html" class="fs-5 text-light d-block text-decoration-none">Semruk</a><hr class="my-2 border-light">
+                  </div>
+              </div>
+          </div>
+
+          
+          <div class="accordion-item bg-dark border-light">
+              <h2 class="accordion-header">
+                  <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#isPC">
+                      İş Bilgisayarları
+                  </button>
+              </h2>
+              <div id="isPC" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                  <div class="accordion-body">
+                      <a href="huma.html" class="fs-5 text-light d-block text-decoration-none">Huma</a><hr class="my-2 border-light">
+                      <a href="markut.html" class="fs-5 text-light d-block text-decoration-none">Markut</a><hr class="my-2 border-light">
+                      <a href="tulpar_creator.html" class="fs-5 text-light d-block text-decoration-none">Tulpar Creator</a><hr class="my-2 border-light">
+                  </div>
+              </div>
+          </div>
+
+          
+          <div class="accordion-item bg-dark border-light">
+              <h2 class="accordion-header">
+                  <button class="accordion-button bg-dark text-success" type="button" data-bs-toggle="collapse" data-bs-target="#aksesuar">
+                      Aksesuarlar
+                  </button>
+              </h2>
+              <div id="aksesuar" class="accordion-collapse collapse" data-bs-parent="#footerMenu">
+                  <div class="accordion-body">
+                      <a href="fare.html" class="fs-5 text-light d-block text-decoration-none">Fare</a>  <hr class="my-2 border-light">
+                      <a href="klavye.html" class="fs-5 text-light d-block text-decoration-none">Klavye</a>  <hr class="my-2 border-light">
+                      <a href="kulaklık.html" class="fs-5 text-light d-block text-decoration-none">Kulaklık</a>  <hr class="my-2 border-light">
+                      <a href="monitör.html" class="fs-5 text-light d-block text-decoration-none">Monitör</a>  <hr class="my-2 border-light">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div style="border-top: 5px solid rgb(230, 84, 0) ; margin-top: 10px;" class="mt-5 text-center p-4 bg-black">
+      <p style="display: inline;" class="">🔥 © 2025 ATİWARE Tüm Hakları Saklıdır. 🔥</p>
+  </div>
+</footer>
+
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<div class="offcanvas offcanvas-end bg-dark text-white w-50" tabindex="-1" id="sepetPaneli" aria-labelledby="sepetPaneliLabel">
+  <div class="offcanvas-header border-bottom border-secondary">
+    <h5 class="offcanvas-title" id="sepetPaneliLabel">Sepetim</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Kapat"></button>
+  </div>
+  <div class="offcanvas-body" id="sepetListe">
+    <p class="text-muted">Sepetiniz şu an boş.</p>
+  </div>
+  <div class="offcanvas-footer bg-light text-dark p-3 border-top border-secondary">
+    <h5 class="mb-2">Toplam: <span id="toplamFiyat">.00</span> TL</h5>
+    <h5 class="mb-2">Toplam: <span id="toplamFiyat">.00</span> TL</h5>
+    <button class="btn btn-success w-100 mb-2" onclick="window.location.href='ödeme.html'">Ödemeye Git</button>
+    <button class="btn btn-outline-danger w-100" onclick="sepetiBosalt()">Sepeti Boşalt</button>
+  </div>
+</div>
+
+</body>
+</html>

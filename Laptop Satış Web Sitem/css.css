@@ -1,0 +1,148 @@
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
+.custom-card {
+    transition: transform 0.5s ease, box-shadow 0.3s ease; 
+}
+
+.custom-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 40px lime;
+}
+
+
+.dropdown-menu {
+    min-width: 240px;
+    border-radius: 12px;
+    padding: 10px 15px;
+    background: #222;
+    border: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+.dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    color: #ddd;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background: #28a745;
+    color: rgb(175, 86, 38);
+    transform: scale(1.05);
+}
+
+.dropdown-menu .form-check-input {
+    margin-right: 12px;
+    transform: scale(1.2);
+    accent-color: #a9b4ac;
+}
+
+.dropdown-toggle {
+    border-radius: 8px;
+    font-weight: 700;
+    padding: 10px 16px;
+    background: transparent;
+    color: white;
+    border: none;
+    transition: all 0.8s ease-in-out;
+}
+
+.dropdown-toggle:hover {
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* 🔵 Tüm Laptoplar */
+.navbar-nav:nth-of-type(1) .dropdown-menu {
+    background: #1f1f1f;
+}
+.navbar-nav:nth-of-type(1) .dropdown-item {
+    color: #c44606;
+}
+.navbar-nav:nth-of-type(1) .dropdown-item:hover {
+    background: #3b3b3b;
+    color: black;
+}
+
+
+/* 🔴 Oyun Bilgisayarları */
+.navbar-nav:nth-of-type(2) .dropdown-menu {
+    background: #323232;
+}
+.navbar-nav:nth-of-type(2) .dropdown-item {
+    color: #ff4d4d;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.navbar-nav:nth-of-type(2) .dropdown-item:hover {
+    background: rgb(130, 42, 42);
+    color:  rgb(40, 40, 40);
+}
+
+/* 🔷 İş Bilgisayarları */
+.navbar-nav:nth-of-type(3) .dropdown-menu {
+    background: #323232;
+}
+.navbar-nav:nth-of-type(3) .dropdown-item {
+    background: #323232;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.navbar-nav:nth-of-type(3) .dropdown-item:hover {
+    background: rgb(0, 89, 172);
+    color: black;
+}
+
+/* 🟡 Aksesuarlar */
+.navbar-nav:nth-of-type(4) .dropdown-menu {
+    background: #323232;
+}
+.navbar-nav:nth-of-type(4) .dropdown-item {
+    background: #323232;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.navbar-nav:nth-of-type(4) .dropdown-item:hover {
+    background: #ffd700;
+    color: black;
+}
+
+
+.navbar-nav .nav-link.dropdown-toggle {
+    font-weight: 700;
+    transition: color 0.1s ;
+}
+.navbar-nav .nav-link.dropdown-toggle:hover {
+    color: #ffffff;
+    text-shadow: 0 0 6px #28a745;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-600px); }
+    to { opacity: 1; transform: translateY(10); }
+}
+
+::selection 
+{
+   background-color: rgb(9, 255, 0);
+   color : #000000
+}
+::-moz-selection
+{
+   background-color: rgb(196, 2, 2);
+   color : #000000
+}
+
+.giris-input {
+    width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: none;
+  }
+  .giris-btn {
+    width: 100%; margin-top: 15px; padding: 12px; background-color: #00ff55;
+    border: none; font-weight: bold; border-radius: 5px; font-size: 16px; color: black;
+  }
